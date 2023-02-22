@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(Empleado)
 admin.site.register(empresa_terciarizada)
+admin.site.register(vehiculo_empresarial)

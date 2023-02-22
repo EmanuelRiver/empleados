@@ -15,4 +15,7 @@ class empresa_terciarizada(models.Model):
     razon_social = models.CharField(max_length=50)
     cuit = models.CharField(max_length=50)
 
-
+class vehiculo_empresarial(models.Model):
+    marca = models.CharField(max_length=50)
+    modelo = models.CharField(max_length=50)
+    patente = models.CharField(max_length=50)
