@@ -20,3 +20,10 @@ def empleados(request):
 
 def empresa_terciarizada(request):
     return render(request, "carga_empleados/empresa_terciarizada.html")
+"""
+def empleadosFormularios(request):
+    return render(request,"carga_empleados/empleadosFormulario.html")
+
+"""
+
+
