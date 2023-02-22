@@ -18,3 +18,5 @@ def empleados(request):
     return render(request, "carga_empleados/empleados.html")
     #return HttpResponse("Vista empleados cargados al sistema")
 
+def empresa_terciarizada(request):
+    return render(request, "carga_empleados/empresa_terciarizada.html")

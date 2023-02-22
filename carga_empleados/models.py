@@ -9,3 +9,10 @@ class Empleado(models.Model):
     
     def __str__ (self):
         return self.nombre
+
+class empresa_terciarizada(models.Model):
+    nombre = models.CharField(max_length=50)
+    razon_social = models.CharField(max_length=50)
+    cuit = models.CharField(max_length=50)
+
+
