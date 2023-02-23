@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from carga_empleados.models import Empleado
+from carga_empleados.models import Empleado, empresa_terciarizada,vehiculo_empresarial
+from carga_empleados.forms import EmpleadosFormularios
 # Create your views here.
 
 """
@@ -15,7 +16,20 @@ def Inicio(request):
     #return HttpResponse("Vista inicio")
 
 def empleados(request):
-    return render(request, "carga_empleados/empleados.html")
+        if request.method == 'POST':
+            miFormulario= EmpleadosFormularios(request.POST)
+            print(miFormulario)
+
+            if miFormulario.is_valid:
+                informacion=miFormulario.cleaned_data
+                empleados = Empleado(nombre=informacion["nombre"],apellido=informacion['apellido'],cargo=informacion['cargo'])
+                empleados.save()
+                return render(request,'carga_empleados/inicio.html')
+        else:
+            miFormulario=EmpleadosFormularios()
+    
+        return render(request,"carga_empleados/empleados.html",{'miFormulario':miFormulario})
+    #return render(request, "carga_empleados/empleados.html")
     #return HttpResponse("Vista empleados cargados al sistema")
 
 def empresa_terciarizada(request):
@@ -25,8 +39,26 @@ def vehiculo_empresarial(request):
     return render(request,"carga_empleados/vehiculo_empresarial.html")
 """
 def empleadosFormularios(request):
-    return render(request,"carga_empleados/empleadosFormulario.html")
+    if request.method == 'POST':
+        empleados = Empleado(request.POST["nombre"],(request.POST['apellido'],(request.POST['cargo'])))
+        empleados.save()
+        return render(render,'carga_empleados/inicio.html')
+    return render(request,"carga_empleados/empleadosFormularios.html")
 
 """
+"""
+def empleadosFormularios(request):
+    if request.method == 'POST':
+        miFormulario= EmpleadosFormularios(request.POST)
+        print(miFormulario)
 
-
+        if miFormulario.is_valid:
+            informacion=miFormulario.cleaned_data
+            empleados = Empleado(nombre=informacion["nombre"],apellido=informacion['apellido'],cargo=informacion['cargo'])
+            empleados.save()
+            return render(request,'carga_empleados/inicio.html')
+    else:
+        miFormulario=EmpleadosFormularios()
+    
+    return render(request,"carga_empleados/empleados/empleadosFormularios.html",{'miFormulario':miFormulario})
+"""
