@@ -1,10 +1,44 @@
 {%extends "carga_empleados/padre.html"%}
     {%load static%}
 {%block contenidoQueCambia%}
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1>{{mensaje}}</h1>
+  
 
-<!-- Aqui se va a colocar lo que se cambia y esta asociado a esta vista-->
-    <h1>Este es el Titulo del inicio que cambio</h1>
-    <p>Se ha heredado todo de la plantilla padre</p>
-    <h3>en el hijo, inicio.html, No tenemos nada</h3>
-    {%endblock%}
+    <h3>Podes buscar una empleado:</h3>
 
+    <form action="/carga_empleados/inicio" method="GET">
+
+        <input type="text" name="camada" id="empleado">
+
+        <input type="submit" value="Buscar">
+
+
+
+
+    </form>
+
+    
+
+    {% if cursos %}
+
+    <p>Estamos buscando el empleado: {{nombre}}</p>
+
+    <ul>
+	{% for nombre in nombres %}
+		<li> {{nombres.nombre}} </li>
+		<li> {{nombres.apellido}} </li>
+	{% endfor %}
+
+    </ul>
+
+    {% else %}
+    <p>No hay datos con esa descripción.</p>
+
+    {% endif %}
+
+    <p style="color: red;">{{respuesta}}</p>
+ 
+   
+
+{% endblock %}
