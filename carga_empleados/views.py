@@ -4,13 +4,7 @@ from carga_empleados.models import Empleado, empresa_terciarizada,vehiculo_empre
 from carga_empleados.forms import EmpleadosFormularios,EmpresaFormularios,VehiculoFormularios
 # Create your views here.
 
-"""
-def empleados (self):
-    empleado = Empleado(nombre="Ricardo",apellido="Rivero",cargo="operario")
-    empleado.save()
-    documentoDeTexto = f"---> nombre: {empleado.nombre} Apellido: {empleado.apellido} Cargo: {empleado.cargo}"
-    return HttpResponse(documentoDeTexto)
-"""
+
 def Inicio(request):
     return render(request,"carga_empleados/inicio.html")
     #return HttpResponse("Vista inicio")

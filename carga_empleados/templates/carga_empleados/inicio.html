@@ -1,44 +1,29 @@
-{%extends "carga_empleados/padre.html"%}
+{%extends "carga_empleados/padre.html"%} 
     {%load static%}
 {%block contenidoQueCambia%}
-    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
-    <h1>{{mensaje}}</h1>
-  
-
-    <h3>Podes buscar una empleado:</h3>
-
-    <form action="/carga_empleados/inicio" method="GET">
-
-        <input type="text" name="camada" id="empleado">
-
-        <input type="submit" value="Buscar">
-
-
-
-
-    </form>
-
+    <h1>INICIO</h1>
     
+    {% if miFormulario.errors %}
 
-    {% if cursos %}
-
-    <p>Estamos buscando el empleado: {{nombre}}</p>
-
-    <ul>
-	{% for nombre in nombres %}
-		<li> {{nombres.nombre}} </li>
-		<li> {{nombres.apellido}} </li>
-	{% endfor %}
-
-    </ul>
-
-    {% else %}
-    <p>No hay datos con esa descripción.</p>
+    <p style="color: red;"> Están mal los datos, revisar</p>
 
     {% endif %}
 
-    <p style="color: red;">{{respuesta}}</p>
- 
-   
 
+    <form action="/carga_empleados/" method="POST">{% csrf_token %}
+
+        
+        
+        <table>
+
+            {{ miFormulario.as_table }}
+
+
+        </table>
+
+
+        <input type="submit", value="Enviar">
+
+    </form>
 {% endblock %}
+
