@@ -31,8 +31,8 @@ def empresa_terciarizada(request):
 
             if miFormulario.is_valid:
                 informacion=miFormulario.cleaned_data
-                empleados = empresa_terciarizada(nombre=informacion["nombre"],razon_social=informacion['razon social'],cuit=informacion['cuit'])
-                empleados.save()
+                empresa = empresa_terciarizada(nombre=informacion["nombre"],razon_social=informacion['razon social'],cuit=informacion['cuit'])
+                empresa.save()
                 return render(request,'carga_empleados/inicio.html')
         else:
              miFormulario=EmpresaFormularios()
@@ -45,9 +45,22 @@ def vehiculo_empresarial(request):
 
             if miFormulario.is_valid:
                 informacion=miFormulario.cleaned_data
-                empleados = vehiculo_empresarial( marca=informacion["Marca"],modelo=informacion['Modelo'],patente=informacion['Dominio'])
-                empleados.save()
+                vehiculo = vehiculo_empresarial( marca=informacion["Marca"],modelo=informacion['Modelo'],patente=informacion['Dominio'])
+                vehiculo.save()
                 return render(request,'carga_empleados/inicio.html')
         else:
              miFormulario=VehiculoFormularios()
         return render(request,'carga_empleados/vehiculo_empresarial.html',{'miFormulario':miFormulario})
+
+def leerempleados(request):
+     empleados = Empleado.objects.all()
+     contexto = {'Empleados:':empleados}
+     return render(request,'carga_empleados/leerEmpleados.html', contexto)
+
+def eliminarEmpleado(request,nombre_empleado):
+     empleado = Empleado.objects.get(nombre=nombre_empleado)
+     empleado.delete()
+
+     empleados = Empleado.objects.all()
+     contexto = {'Empleado': empleados}
+     return render(request,"carga_empleados/leerEmpleados.html",contexto)

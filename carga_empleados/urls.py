@@ -7,5 +7,7 @@ urlpatterns = [
     path('empresa_terciarizada', views.empresa_terciarizada,name="empresa_terciarizada"),
     path('vehiculo_empresarial', views.vehiculo_empresarial,name="vehiculo_empresarial"),
     #path('empleadosFormularios',views.empleadosFormularios,name="empleadosFormularios")
-    
+    path('leerEmpleados',views.leerempleados,name='LeerEmpleados'),
+    path('eliminarEmpleado/<empleado_nombre>',views.eliminarEmpleado, name= "eliminarEmpleado"),
+
 ]
