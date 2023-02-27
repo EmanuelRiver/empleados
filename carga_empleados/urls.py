@@ -9,5 +9,6 @@ urlpatterns = [
     #path('empleadosFormularios',views.empleadosFormularios,name="empleadosFormularios")
     path('leerEmpleados',views.leerempleados,name='LeerEmpleados'),
     path('eliminarEmpleado/<empleado_nombre>',views.eliminarEmpleado, name= "eliminarEmpleado"),
+    path('editarEmpleado/<empleado_nombre>',views.editarEmpleado,name="editarEmpleado"),
 
 ]

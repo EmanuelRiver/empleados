@@ -54,7 +54,7 @@ def vehiculo_empresarial(request):
 
 def leerempleados(request):
      empleados = Empleado.objects.all()
-     contexto = {'Empleados:':empleados}
+     contexto = {'empleados':empleados}
      return render(request,'carga_empleados/leerEmpleados.html', contexto)
 
 def eliminarEmpleado(request,nombre_empleado):
@@ -62,5 +62,24 @@ def eliminarEmpleado(request,nombre_empleado):
      empleado.delete()
 
      empleados = Empleado.objects.all()
-     contexto = {'Empleado': empleados}
+     contexto = {'empleados': empleados}
      return render(request,"carga_empleados/leerEmpleados.html",contexto)
+
+def editarEmpleado(request,nombre_empleado):
+    empleado = Empleado.objects.get(nombre=nombre_empleado)
+    if request.method == 'POST':
+        miFormulario = EmpleadosFormularios(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            empleado.nombre = informacion['nombre']
+            empleado.apellido = informacion['apellido']
+            empleado.cargo = informacion['cargo']
+
+            empleado.save()
+
+            return render(request,'carga_empleados/inicio.html')
+    else:
+        miFormulario = EmpleadosFormularios(initial={'nombre':empleado.nombre,'apellido':empleado.apellido,'cargo':empleado.cargo})
+    return render(request,'carga_empleados/editarEmpleado.html',{'miFormulario':miFormulario,'empleado_nombre':empleado.nombre})
