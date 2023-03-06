@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresas Cargadas en el Sistema</title>
+</head>
+<body>
+    {% for e in empresa %} 
+        <li>{{e}}</li>
+        <button>
+            <a href="{% url 'eliminarEmpresa' e.nombre %}">Eliminar</a>
+            <a href="{% url 'editarEmpresa' e.nombre %}">Editar</a>
+        </button>
+    {%endfor%}
+
+    <a href="empresa"> Agregar otra Empresa</a>
+</body>
+</html>

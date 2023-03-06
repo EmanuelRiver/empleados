@@ -7,13 +7,14 @@
     <title>Empleados Cargados en el sistema</title>
 </head>
 <body>
-    {% for e in empleados%} 
+    {% for e in empleados %} 
         <li>{{e}}</li>
         <button>
             <a href="{% url 'eliminarEmpleado' e.nombre %}">Eliminar</a>
             <a href="{% url 'editarEmpleado' e.nombre %}">Editar</a>
         </button>
     {%endfor%} 
+    
     <a href="empleados"> Agregar otro Empleado</a>
 </body>
 </html>
